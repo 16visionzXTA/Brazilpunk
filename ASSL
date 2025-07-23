@@ -1,0 +1,361 @@
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local lp = Players.LocalPlayer
+
+-- === Classic Roblox Notification ===
+StarterGui:SetCore("SendNotification", {
+	Title = "ASSL Adtoggler",
+	Text = "Hi! Thank you for using the ASSL Adtoggler, Have Fun!",
+	Icon = "rbxthumb://type=AvatarHeadShot&id=8986060376&w=150&h=150",
+	Duration = 8
+})
+
+-- === GUI ===
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = lp:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+local Frame = Instance.new("Frame")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 0.3
+Frame.Position = UDim2.new(0.35, 0, 0.3, 0)
+Frame.Size = UDim2.new(0, 420, 0, 650)
+Frame.Active = true
+Frame.Draggable = true
+
+local cornerFrame = Instance.new("UICorner")
+cornerFrame.CornerRadius = UDim.new(0, 3)
+cornerFrame.Parent = Frame
+
+-- === Title + Credits ===
+local Title = Instance.new("TextLabel")
+Title.Parent = Frame
+Title.BackgroundTransparency = 1
+Title.Size = UDim2.new(1, -90, 0, 30)
+Title.Position = UDim2.new(0, 10, 0, 0)
+Title.Font = Enum.Font.SourceSansBold
+Title.Text = "ASSL Adtoggler | Credits: Noctyrix | exotechv | 749visionzz"
+Title.TextColor3 = Color3.fromRGB(0, 0, 0)
+Title.TextScaled = true
+
+-- === Close ===
+local CloseButton = Instance.new("TextButton")
+CloseButton.Parent = Frame
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Position = UDim2.new(1, -40, 0, 0)
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+CloseButton.TextScaled = true
+local cornerClose = Instance.new("UICorner")
+cornerClose.CornerRadius = UDim.new(0, 3)
+cornerClose.Parent = CloseButton
+
+-- === Minimize ===
+local MinimizeButton = Instance.new("TextButton")
+MinimizeButton.Parent = Frame
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+MinimizeButton.Position = UDim2.new(1, -80, 0, 0)
+MinimizeButton.Size = UDim2.new(0, 30, 0, 30)
+MinimizeButton.Font = Enum.Font.SourceSansBold
+MinimizeButton.Text = "-"
+MinimizeButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+MinimizeButton.TextScaled = true
+local cornerMin = Instance.new("UICorner")
+cornerMin.CornerRadius = UDim.new(0, 3)
+cornerMin.Parent = MinimizeButton
+
+-- === Modules Container ===
+local Modules = Instance.new("Frame")
+Modules.Parent = Frame
+Modules.BackgroundTransparency = 1
+Modules.Position = UDim2.new(0, 0, 0, 40)
+Modules.Size = UDim2.new(1, 0, 1, -40)
+
+-----------------------------------------------------------
+-- === ANIMSPEED MODULE ===
+-----------------------------------------------------------
+local AnimLabel = Instance.new("TextLabel")
+AnimLabel.Parent = Modules
+AnimLabel.BackgroundTransparency = 1
+AnimLabel.Position = UDim2.new(0, 10, 0, 0)
+AnimLabel.Size = UDim2.new(0, 400, 0, 30)
+AnimLabel.Font = Enum.Font.SourceSansBold
+AnimLabel.Text = "Animspeed Adjuster"
+AnimLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+AnimLabel.TextScaled = true
+
+local AnimStatus = Instance.new("TextLabel")
+AnimStatus.Parent = Modules
+AnimStatus.BackgroundTransparency = 1
+AnimStatus.Position = UDim2.new(0, 10, 0, 30)
+AnimStatus.Size = UDim2.new(0, 200, 0, 20)
+AnimStatus.Font = Enum.Font.SourceSansBold
+AnimStatus.Text = "Status: Off"
+AnimStatus.TextColor3 = Color3.fromRGB(255, 0, 0)
+AnimStatus.TextScaled = true
+
+local AnimPlus = Instance.new("TextButton")
+AnimPlus.Parent = Modules
+AnimPlus.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+AnimPlus.Position = UDim2.new(0, 10, 0, 60)
+AnimPlus.Size = UDim2.new(0, 50, 0, 40)
+AnimPlus.Font = Enum.Font.SourceSansBold
+AnimPlus.Text = "+"
+AnimPlus.TextColor3 = Color3.fromRGB(0, 0, 0)
+AnimPlus.TextScaled = true
+Instance.new("UICorner", AnimPlus).CornerRadius = UDim.new(0, 3)
+
+local AnimMinus = Instance.new("TextButton")
+AnimMinus.Parent = Modules
+AnimMinus.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+AnimMinus.Position = UDim2.new(0, 70, 0, 60)
+AnimMinus.Size = UDim2.new(0, 50, 0, 40)
+AnimMinus.Font = Enum.Font.SourceSansBold
+AnimMinus.Text = "-"
+AnimMinus.TextColor3 = Color3.fromRGB(0, 0, 0)
+AnimMinus.TextScaled = true
+Instance.new("UICorner", AnimMinus).CornerRadius = UDim.new(0, 3)
+
+local AnimBox = Instance.new("TextBox")
+AnimBox.Parent = Modules
+AnimBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AnimBox.Position = UDim2.new(0, 130, 0, 60)
+AnimBox.Size = UDim2.new(0, 100, 0, 40)
+AnimBox.Text = "2"
+AnimBox.Font = Enum.Font.SourceSansBold
+AnimBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+AnimBox.TextScaled = true
+Instance.new("UICorner", AnimBox).CornerRadius = UDim.new(0, 3)
+
+local AnimToggle = Instance.new("TextButton")
+AnimToggle.Parent = Modules
+AnimToggle.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+AnimToggle.Position = UDim2.new(0, 240, 0, 60)
+AnimToggle.Size = UDim2.new(0, 80, 0, 40)
+AnimToggle.Font = Enum.Font.SourceSansBold
+AnimToggle.Text = "Enable"
+AnimToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+AnimToggle.TextScaled = true
+Instance.new("UICorner", AnimToggle).CornerRadius = UDim.new(0, 3)
+
+local animOn = false
+local animSpeed = tonumber(AnimBox.Text) or 2
+
+local function adjustAnim()
+	while animOn do
+		local char = lp.Character
+		if char then
+			local hum = char:FindFirstChildOfClass("Humanoid")
+			if hum then
+				for _, anim in pairs(hum:GetPlayingAnimationTracks()) do
+					anim:AdjustSpeed(animSpeed)
+				end
+			end
+		end
+		task.wait(0.1)
+	end
+end
+
+AnimToggle.MouseButton1Click:Connect(function()
+	animOn = not animOn
+	AnimStatus.Text = animOn and "Status: On" or "Status: Off"
+	AnimStatus.TextColor3 = animOn and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+	AnimToggle.Text = animOn and "Enabled" or "Enable"
+	animSpeed = tonumber(AnimBox.Text) or 2
+	if animOn then coroutine.wrap(adjustAnim)() end
+end)
+
+AnimPlus.MouseButton1Click:Connect(function()
+	animSpeed += 1
+	AnimBox.Text = tostring(animSpeed)
+end)
+
+AnimMinus.MouseButton1Click:Connect(function()
+	animSpeed -= 1
+	if animSpeed < 0 then animSpeed = 0 end
+	AnimBox.Text = tostring(animSpeed)
+end)
+
+AnimBox.FocusLost:Connect(function() animSpeed = tonumber(AnimBox.Text) or 2 end)
+
+-----------------------------------------------------------
+-- === SPEED MODULE ===
+-----------------------------------------------------------
+local Yoffset = 140
+
+local SpeedLabel = Instance.new("TextLabel")
+SpeedLabel.Parent = Modules
+SpeedLabel.BackgroundTransparency = 1
+SpeedLabel.Position = UDim2.new(0, 10, 0, Yoffset)
+SpeedLabel.Size = UDim2.new(0, 400, 0, 30)
+SpeedLabel.Font = Enum.Font.SourceSansBold
+SpeedLabel.Text = "WalkSpeed Adjuster"
+SpeedLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+SpeedLabel.TextScaled = true
+
+local SpeedStatus = Instance.new("TextLabel")
+SpeedStatus.Parent = Modules
+SpeedStatus.BackgroundTransparency = 1
+SpeedStatus.Position = UDim2.new(0, 10, 0, Yoffset+30)
+SpeedStatus.Size = UDim2.new(0, 200, 0, 20)
+SpeedStatus.Font = Enum.Font.SourceSansBold
+SpeedStatus.Text = "Status: Off"
+SpeedStatus.TextColor3 = Color3.fromRGB(255, 0, 0)
+SpeedStatus.TextScaled = true
+
+local SpeedPlus = Instance.new("TextButton")
+SpeedPlus.Parent = Modules
+SpeedPlus.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+SpeedPlus.Position = UDim2.new(0, 10, 0, Yoffset+60)
+SpeedPlus.Size = UDim2.new(0, 50, 0, 40)
+SpeedPlus.Font = Enum.Font.SourceSansBold
+SpeedPlus.Text = "+"
+SpeedPlus.TextColor3 = Color3.fromRGB(0, 0, 0)
+SpeedPlus.TextScaled = true
+Instance.new("UICorner", SpeedPlus).CornerRadius = UDim.new(0, 3)
+
+local SpeedMinus = Instance.new("TextButton")
+SpeedMinus.Parent = Modules
+SpeedMinus.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+SpeedMinus.Position = UDim2.new(0, 70, 0, Yoffset+60)
+SpeedMinus.Size = UDim2.new(0, 50, 0, 40)
+SpeedMinus.Font = Enum.Font.SourceSansBold
+SpeedMinus.Text = "-"
+SpeedMinus.TextColor3 = Color3.fromRGB(0, 0, 0)
+SpeedMinus.TextScaled = true
+Instance.new("UICorner", SpeedMinus).CornerRadius = UDim.new(0, 3)
+
+local SpeedBox = Instance.new("TextBox")
+SpeedBox.Parent = Modules
+SpeedBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SpeedBox.Position = UDim2.new(0, 130, 0, Yoffset+60)
+SpeedBox.Size = UDim2.new(0, 100, 0, 40)
+SpeedBox.Text = "16"
+SpeedBox.Font = Enum.Font.SourceSansBold
+SpeedBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+SpeedBox.TextScaled = true
+Instance.new("UICorner", SpeedBox).CornerRadius = UDim.new(0, 3)
+
+local SpeedToggle = Instance.new("TextButton")
+SpeedToggle.Parent = Modules
+SpeedToggle.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+SpeedToggle.Position = UDim2.new(0, 240, 0, Yoffset+60)
+SpeedToggle.Size = UDim2.new(0, 80, 0, 40)
+SpeedToggle.Font = Enum.Font.SourceSansBold
+SpeedToggle.Text = "Enable"
+SpeedToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+SpeedToggle.TextScaled = true
+Instance.new("UICorner", SpeedToggle).CornerRadius = UDim.new(0, 3)
+
+local speedOn = false
+local speedValue = tonumber(SpeedBox.Text) or 16
+
+local function adjustSpeed()
+	while speedOn do
+		local char = lp.Character
+		if char then
+			local hum = char:FindFirstChildOfClass("Humanoid")
+			if hum then
+				hum.WalkSpeed = speedValue
+			end
+		end
+		task.wait(0.1)
+	end
+end
+
+SpeedToggle.MouseButton1Click:Connect(function()
+	speedOn = not speedOn
+	SpeedStatus.Text = speedOn and "Status: On" or "Status: Off"
+	SpeedStatus.TextColor3 = speedOn and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+	SpeedToggle.Text = speedOn and "Enabled" or "Enable"
+	speedValue = tonumber(SpeedBox.Text) or 16
+	if speedOn then coroutine.wrap(adjustSpeed)() end
+end)
+
+SpeedPlus.MouseButton1Click:Connect(function()
+	speedValue += 1
+	SpeedBox.Text = tostring(speedValue)
+end)
+
+SpeedMinus.MouseButton1Click:Connect(function()
+	speedValue -= 1
+	if speedValue < 0 then speedValue = 0 end
+	SpeedBox.Text = tostring(speedValue)
+end)
+
+SpeedBox.FocusLost:Connect(function() speedValue = tonumber(SpeedBox.Text) or 16 end)
+
+-----------------------------------------------------------
+-- === LAG MODULE ===
+-----------------------------------------------------------
+local Loffset = 280
+
+local LagLabel = Instance.new("TextLabel")
+LagLabel.Parent = Modules
+LagLabel.BackgroundTransparency = 1
+LagLabel.Position = UDim2.new(0, 10, 0, Loffset)
+LagLabel.Size = UDim2.new(0, 400, 0, 30)
+LagLabel.Font = Enum.Font.SourceSansBold
+LagLabel.Text = "Lag Toggler"
+LagLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+LagLabel.TextScaled = true
+
+local LagStatus = Instance.new("TextLabel")
+LagStatus.Parent = Modules
+LagStatus.BackgroundTransparency = 1
+LagStatus.Position = UDim2.new(0, 10, 0, Loffset+30)
+LagStatus.Size = UDim2.new(0, 200, 0, 20)
+LagStatus.Font = Enum.Font.SourceSansBold
+LagStatus.Text = "Status: Off"
+LagStatus.TextColor3 = Color3.fromRGB(255, 0, 0)
+LagStatus.TextScaled = true
+
+local LagToggle = Instance.new("TextButton")
+LagToggle.Parent = Modules
+LagToggle.BackgroundColor3 = Color3.fromRGB(167, 183, 196)
+LagToggle.Position = UDim2.new(0, 10, 0, Loffset+60)
+LagToggle.Size = UDim2.new(0, 80, 0, 40)
+LagToggle.Font = Enum.Font.SourceSansBold
+LagToggle.Text = "Enable"
+LagToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+LagToggle.TextScaled = true
+Instance.new("UICorner", LagToggle).CornerRadius = UDim.new(0, 3)
+
+local lagOn = false
+
+local function fakeLag()
+	while lagOn do
+		local char = lp.Character
+		if char then
+			local hrp = char:FindFirstChild("HumanoidRootPart")
+			if hrp then
+				hrp.Anchored = true
+				task.wait(0.2)
+				hrp.Anchored = false
+			end
+		end
+		task.wait(0.2)
+	end
+end
+
+LagToggle.MouseButton1Click:Connect(function()
+	lagOn = not lagOn
+	LagStatus.Text = lagOn and "Status: On" or "Status: Off"
+	LagStatus.TextColor3 = lagOn and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+	LagToggle.Text = lagOn and "Enabled" or "Enable"
+	if lagOn then coroutine.wrap(fakeLag)() end
+end)
+
+-- === Close & Minimize ===
+CloseButton.MouseButton1Click:Connect(function() ScreenGui:Destroy() end)
+
+local minimized = false
+MinimizeButton.MouseButton1Click:Connect(function()
+	minimized = not minimized
+	Modules.Visible = not minimized
+	MinimizeButton.Text = minimized and "+" or "-"
+end)
